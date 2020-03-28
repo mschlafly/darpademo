@@ -1,6 +1,7 @@
 //// To run go to Tools > Command Line > Developer command prompt
-// To compile: cl -GX threaded-server.cpp main.cpp ws-util.cpp wsock32.lib
-// To execute: threaded-server.exe 192.168.1.3 8888 
+// To compile: "cl -GX threaded-server.cpp main.cpp ws-util.cpp wsock32.lib"
+// Go into file TCPserver "cd ./TCPserver" and check that that contains the cpp files using "dir"
+// To execute: "threaded-server.exe 192.168.1.3 8888"
 // (note- the IP and port are for this particular project)
 
 /***********************************************************************

@@ -2,6 +2,8 @@ from PIL import Image
 import math
 import os.path as path
 
+# This code creates image to display on the tanvas and saves it to the correct folder
+
 # How to run from command on windows
 # go to folder and type python example1.py
 

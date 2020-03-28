@@ -19,22 +19,14 @@ using Windows.Storage.Pickers;
 
 namespace sharedcontrol
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
-
-        StorageFile newFile;
-        bool file_created = false;
-        bool collectdata = false; // Boolean for whether to save the data 
-
         // Size of haptic display
         int W_tablet = 1280; //738;
         int H_tablet = 780; //1024;
 
         // Distance in the unity environment to show on tablet (for height)
-        int H_unity = 30;
+        int H_unity = 30; // A value of 30 mean that the entire square environement is displayed on the tablet
 
         // Position of person in tablet
         int x_person_tablet;
@@ -42,6 +34,12 @@ namespace sharedcontrol
         // Ratio for zooming
         float zoom_ratio;
 
+        // Variables for saving data to txt file
+        StorageFile newFile;
+        bool file_created = false;
+        bool collectdata = false; // Boolean for whether to save the data 
+
+        // For saving and recieving info from files
         String string_of_coordinates = "";
         MediaElement mysong_start = new MediaElement();
         MediaElement mysong_end = new MediaElement();
@@ -58,12 +56,12 @@ namespace sharedcontrol
             zoom_ratio = H_tablet / H_unity;
 
             mainCanvas.DoubleTapped += new DoubleTappedEventHandler(target_DoubleTapped);
-            //mainCanvas.PointerPressed += new PointerEventHandler(Pointer_Pressed);
             mainCanvas.PointerMoved += new PointerEventHandler(Pointer_Moved);
-            //mainCanvas.PointerReleased += new PointerEventHandler(Pointer_Released);
             pickfiles();
-
         }
+
+        // This functin is run at the beginning and opens the picker to select files from the 
+        // downloads folder to make sounds and to save the touch coordinates to
         private async void pickfiles()
         {
             System.Diagnostics.Debug.WriteLine("Pick audio file sound1.wav from Downloads folder");
@@ -94,6 +92,8 @@ namespace sharedcontrol
             // Saves empty string of coordinates to file 
             savefile();
         }
+        // If the a double-tap is detected, either begin collecting data or save the data, 
+        // depending on the state of the collectdata variable
         void target_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
 
@@ -115,12 +115,9 @@ namespace sharedcontrol
             }
         }
 
-
-        //void Pointer_Pressed(object sender, PointerRoutedEventArgs e)
-        //{
-        //    //Windows.UI.Input.PointerPoint currentPoint = e.GetCurrentPoint(mainCanvas);
-        //}
-
+        // If the pointer is moved and you are collecting data, 
+        // convert the pixel coordinates to "Unity" coordinates (a 30x30 grid with the origin in the lower left hand corner),
+        // and save the data to a string
         void Pointer_Moved(object sender, PointerRoutedEventArgs e)
         {
 
@@ -144,26 +141,9 @@ namespace sharedcontrol
             }
         }
 
-        //void Pointer_Released(object sender, PointerRoutedEventArgs e)
-        //{
-        //    // Retrieve the point associated with the current event
-        //    //Windows.UI.Input.PointerPoint currentPoint = e.GetCurrentPoint(mainCanvas);
-
-        //}
+        // Save the string_of_coordinates to touch_locations.txt
         private async void savefile()
         {
-            //if (!file_created)
-            //{
-            //    try
-            //    {
-            //        newFile = await DownloadsFolder.CreateFileAsync("touch_locations.txt");
-            //    }
-            //    catch
-            //    {
-            //        System.Diagnostics.Debug.WriteLine("Was not able to create file. Check if it already exists in Downloads folder.");
-            //    }
-            //    file_created = true;
-            //}
             bool need_save_file = true;
             String string_of_coordinates2 = string_of_coordinates;
             while (need_save_file)
@@ -181,11 +161,6 @@ namespace sharedcontrol
                 }
 
             }
-
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
         }
     }

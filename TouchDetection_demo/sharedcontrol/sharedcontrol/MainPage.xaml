@@ -10,22 +10,8 @@
 
     <Grid>
         <Image Source="Assets/demo.png" Width="1280" Height="800" Margin="0,0,-412,-199" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <Image Source="Assets/shelby.png" Width="1280" Height="800" Margin="0,0,-412,-199" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <CompositeTransform ScaleX="0.65" ScaleY="0.65" TranslateX="10"/>
-            </Image.RenderTransform>
-        </Image>
-        <Canvas Name="mainCanvas" Height="Auto" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark" Opacity="0" />
-        <TextBox Text="(0,0)" TextWrapping="Wrap" Margin="314,724,1130,248" RenderTransformOrigin="0.5,0.5">
-            <TextBox.RenderTransform>
-                <CompositeTransform ScaleX="3" ScaleY="3"/>
-            </TextBox.RenderTransform>
-        </TextBox>
-        <TextBox Text="(30,30)" TextWrapping="Wrap" Margin="887,38,548,934" RenderTransformOrigin="0.5,0.5" TextChanged="TextBox_TextChanged">
-            <TextBox.RenderTransform>
-                <CompositeTransform ScaleX="3" ScaleY="3"/>
-            </TextBox.RenderTransform>
-        </TextBox>
-        <!--RequestedTheme="Dark"-->
+        <Canvas Name="mainCanvas" Height="Auto" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark" Opacity="0" Margin="0,3,0,-3" >
+        </Canvas>
+
     </Grid>
 </Page>
